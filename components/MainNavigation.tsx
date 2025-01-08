@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { useToggle } from '@/hooks/useToggle';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { useEffect } from 'react';
-import { CgCloseO, CgMenuRound } from 'react-icons/cg';
+import { useToggle } from "@/hooks/useToggle";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect } from "react";
+import { CgCloseO, CgMenuRound } from "react-icons/cg";
 
 /* 
 Barrierefreies Menü:
@@ -22,16 +22,17 @@ type LinkTarget = {
 
 const linkTargets = [
   {
-    text: 'Startseite',
-    url: '/',
+    text: "Startseite",
+    url: "/",
   },
-  { text: 'Unser Team', url: '/team' },
-  { text: 'Client & Server', url: '/client-server' },
-  { text: 'Shop', url: '/shop' },
-  { text: 'Standorte', url: '/standorte' },
-  { text: 'Bilder', url: '/bilder' },
-  { text: 'Blog', url: '/blog' },
-  { text: 'GQL-Blog', url: '/gql-blog' },
+  { text: "Unser Team", url: "/team" },
+  { text: "Client & Server", url: "/client-server" },
+  { text: "Shop", url: "/shop" },
+  { text: "Standorte", url: "/standorte" },
+  { text: "Bilder", url: "/bilder" },
+  { text: "Blog", url: "/blog" },
+  { text: "GQL-Blog", url: "/gql-blog" },
+  { text: "Petition", url: "/petition" },
 ] satisfies LinkTarget[];
 
 export default function MainNavigation() {
@@ -43,17 +44,17 @@ export default function MainNavigation() {
   useEffect(() => closeMenu(), [pathname, closeMenu]);
 
   return (
-    <nav className="main-navigation">
+    <nav className='main-navigation'>
       <button
-        className="main-navigation__button"
+        className='main-navigation__button'
         onClick={toggleMenu}
         aria-expanded={isOpen}
-        aria-label="Hauptmenü"
+        aria-label='Hauptmenü'
       >
         Menü {isOpen ? <CgCloseO /> : <CgMenuRound />}
       </button>
       {isOpen && (
-        <ul className="main-navigation__list">
+        <ul className='main-navigation__list'>
           {getMenuItems(linkTargets, pathname)}
         </ul>
       )}
@@ -84,11 +85,11 @@ function getMenuItems(linkTargets: LinkTarget[], pathname: string) {
 		haben, alle anderen Links sollen das Attribut gar nicht haben.
 		https://tink.uk/using-the-aria-current-attribute/  */
     const attributes = isCurrentPage
-      ? ({ 'aria-current': 'page' } as const)
+      ? ({ "aria-current": "page" } as const)
       : {};
 
     const cssClasses = `main-navigation__link ${
-      isCurrentPage ? 'main-navigation__link--current' : ''
+      isCurrentPage ? "main-navigation__link--current" : ""
     }`;
 
     return (

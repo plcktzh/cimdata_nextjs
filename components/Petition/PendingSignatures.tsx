@@ -1,8 +1,11 @@
-import prisma from '@/prisma/db';
-import SignatureToCheck from './SignatureToCheck';
+import prisma from "@/prisma/db";
+import SignatureToCheck from "./SignatureToCheck";
 
 export default async function PendingSignatures() {
-  const signatures = [];
+  const signatures = await prisma.signature.findMany({
+    where: { approved: false },
+    orderBy: { date: "asc" },
+  });
 
   if (!signatures.length) {
     return <h2>Keine ungeprüften Unterschriften</h2>;
@@ -10,8 +13,8 @@ export default async function PendingSignatures() {
 
   return (
     <ul>
-      {signatures.map(() => (
-        <SignatureToCheck />
+      {signatures.map((signature) => (
+        <SignatureToCheck key={signature.id} {...signature} />
       ))}
     </ul>
   );
