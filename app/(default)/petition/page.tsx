@@ -1,4 +1,5 @@
 import PendingSignatures from "@/components/Petition/PendingSignatures";
+import PetitionForm from "@/components/Petition/PetitionForm";
 import saveTheWhales from "@/img/save-the-whales.jpg";
 import prisma from "@/prisma/db";
 import type { Metadata } from "next";
@@ -144,6 +145,7 @@ https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ol
           )}
         </nav>
       )}
+      <PetitionForm />
       <PendingSignatures />
     </>
   );

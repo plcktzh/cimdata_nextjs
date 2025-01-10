@@ -28,3 +28,56 @@ model Signature {
   approved Boolean  @default(false)
   date     DateTime @default(now())
 }
+
+// Events
+
+model Event {
+  id          Int          @id @default(autoincrement())
+  name        String
+  description String?
+  date        DateTime
+  poster      EventPoster?
+  venue       Venue        @relation(fields: [venueId], references: [id])
+  venueId     Int
+  category    Category[]
+}
+
+// 1:1 relation
+model EventPoster {
+  id      Int    @id @default(autoincrement())
+  url     String
+  event   Event  @relation(fields: [eventId], references: [id])
+  eventId Int    @unique
+}
+
+// 1:n relation
+model Venue {
+  id    Int     @id @default(autoincrement())
+  name  String
+  event Event[]
+}
+
+// m:n relation
+model Category {
+  id    Int     @id @default(autoincrement())
+  name  String
+  event Event[]
+}
+
+/**
+ * Poster as a mandatory field for Event
+ * model Event {
+ * id          Int         @id @default(autoincrement())
+ * name        String
+ * description String?
+ * date        DateTime
+ * poster      EventPoster @relation(fields: [posterId], references: [id])
+ * posterId    Int         @unique
+ * }
+ * // 1:1 relation
+ * model EventPoster {
+ * id    Int    @id @default(autoincrement())
+ * url   String
+ * event Event?
+ * }
+ */

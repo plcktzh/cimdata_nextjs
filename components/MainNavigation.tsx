@@ -33,6 +33,7 @@ const linkTargets = [
   { text: "Blog", url: "/blog" },
   { text: "GQL-Blog", url: "/gql-blog" },
   { text: "Petition", url: "/petition" },
+  { text: "Veranstaltungen", url: "/events" },
 ] satisfies LinkTarget[];
 
 export default function MainNavigation() {
